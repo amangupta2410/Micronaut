@@ -1,0 +1,12 @@
+micronaut:
+    application:
+        name: micro-naut
+    server:
+        port: 8053
+endpoints:
+    routes:
+        enabled: true
+        sensitive: false
+    metrics:
+        enabled: true
+        sensitive: false
