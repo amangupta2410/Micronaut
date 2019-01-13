@@ -10,3 +10,6 @@ endpoints:
     metrics:
         enabled: true
         sensitive: false
+    all:
+        enabled: true
+        sensitive: false
