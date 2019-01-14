@@ -2,6 +2,8 @@ package micro.naut.controllers;
 
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static micro.naut.controllers.Routes.*;
 
@@ -11,8 +13,11 @@ import static micro.naut.controllers.Routes.*;
 @Controller(value = BASE_PATH_URI)
 public class MainController {
 
+    private Logger logger = LoggerFactory.getLogger(MainController.class);
+
     @Get(value = HOME_URI)
     public String home(){
+        logger.info("log from the home path");
         return "test";
     }
 
