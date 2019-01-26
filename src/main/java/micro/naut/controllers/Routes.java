@@ -9,16 +9,24 @@ public class Routes {
 
     public static final String VERSION = "v1";
 
-    public static final String SLASH = "/";
+    private static final String SLASH = "/";
 
     public static final String VERSION_URI = VERSION+SLASH;
 
     @Value("${micronaut.application.name}")
     public String SERVICE_NAME;
 
-    public static final String HOME = "home";
+    private static final String HOME = "home";
+
+    private static final String TEST = "test";
+
+    public static final String TEST_OBJ = "test-obj";
 
     public static final String HOME_URI = HOME+SLASH;
+
+    public static final String TEST_URI = TEST+SLASH;
+
+    public static final String TEST_OBJ_URI = TEST_OBJ+SLASH;
 
     public static final String BASE_PATH = VERSION_URI+"${micronaut.application.name}";
 
