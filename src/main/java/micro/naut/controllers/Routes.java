@@ -7,20 +7,26 @@ import io.micronaut.context.annotation.Value;
  **/
 public class Routes {
 
-    public static final String VERSION = "v1";
-
-    private static final String SLASH = "/";
-
-    public static final String VERSION_URI = VERSION+SLASH;
-
-    @Value("${micronaut.application.name}")
-    public String SERVICE_NAME;
-
     private static final String HOME = "home";
 
     private static final String TEST = "test";
 
-    public static final String TEST_OBJ = "test-obj";
+    private static final String TEST_OBJ = "test-obj";
+
+    private static final String PASSWORD_ENCODE = "password-encode";
+
+    private static final String VERSION = "v1";
+
+    private static final String SLASH = "/";
+
+    @Value("${micronaut.application.name}")
+    public static String SERVICE_NAME;
+
+    public static final String VERSION_URI = VERSION+SLASH;
+
+    public static final String BASE_PATH = VERSION_URI+"${micronaut.application.name}";
+
+    public static final String BASE_PATH_URI = SLASH+BASE_PATH+SLASH;
 
     public static final String HOME_URI = HOME+SLASH;
 
@@ -28,10 +34,12 @@ public class Routes {
 
     public static final String TEST_OBJ_URI = TEST_OBJ+SLASH;
 
-    public static final String BASE_PATH = VERSION_URI+"${micronaut.application.name}";
+    public static final String PASSWORD_ENCODE_URI = PASSWORD_ENCODE+SLASH;
 
-    public static final String BASE_PATH_URI = SLASH+BASE_PATH+SLASH;
+    private static final String PATH_VARIABLE_PASSWORD = "{password}";
 
-    public String HOME_URL = VERSION.concat("/").concat(SERVICE_NAME).concat("/").concat(HOME);
+    public static final String PASSWORD_ENCODE_URI_GET = PASSWORD_ENCODE+SLASH+PATH_VARIABLE_PASSWORD;
+
+
 
 }
