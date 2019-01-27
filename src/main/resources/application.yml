@@ -15,7 +15,16 @@ endpoints:
         sensitive: false
 datasources:
     default:
-        url: jdbc:h2:mem:micro-naut;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-        username: sa
-        password: "micro-naut"
-        driverClassName: org.h2.Driver
+        url: ${MICRO_POC_JDBC_URL:`jdbc:mysql://localhost:3306/micro-naut`}
+        username: ${MICRO_POC_JDBC_USERNAME:`root`}
+        password: ${MICRO_POC_JDBC_PASSWORD:`root'}
+        driverClassName: ${MICRO_POC_JDBC_DRIVER:`com.mysql.jdbc.Driver`}
+jpa:
+    default:
+        packages-to-scan:
+            - 'micro.naut.entities'
+        properties:
+            hibernate:
+                hbm2ddl:
+                    auto: update
+                show_sql: true
