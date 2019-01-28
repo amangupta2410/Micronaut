@@ -2,6 +2,9 @@ package micro.naut.entities;
 
 import javax.persistence.*;
 
+/**
+ * Created by Karanbir Singh on 1/27/2019.
+ **/
 @Entity
 @Table(name="user",uniqueConstraints = @UniqueConstraint(columnNames = {"username"}))
 public class User extends AbstractEntity<Long> {
@@ -122,5 +125,20 @@ public class User extends AbstractEntity<Long> {
 
 	public void setCheckPasswordHistory(boolean checkPasswordHistory) {
 		this.checkPasswordHistory = checkPasswordHistory;
+	}
+
+	@Override
+	public String toString() {
+		return "User{" +
+				"username='" + username + '\'' +
+				", role=" + role +
+				", enabled=" + enabled +
+				", verified=" + verified +
+				", editable=" + editable +
+				", deleted=" + deleted +
+				", expired=" + expired +
+				", locked=" + locked +
+				", checkPasswordHistory=" + checkPasswordHistory +
+				'}';
 	}
 }

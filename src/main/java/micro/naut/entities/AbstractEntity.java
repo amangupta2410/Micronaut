@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
- * Created by Karanbir Singh on 12/20/2014.
+ * Created by Karanbir Singh on 1/27/2019.
 **/
 @MappedSuperclass()
 public class AbstractEntity<T extends Serializable> implements Serializable {
@@ -70,4 +70,14 @@ public class AbstractEntity<T extends Serializable> implements Serializable {
         this.editableBy = editableBy;
     }
 
+    @Override
+    public String toString() {
+        return "AbstractEntity{" +
+                "id=" + id +
+                ", createdOn=" + createdOn +
+                ", updatedOn=" + updatedOn +
+                ", updatedBy=" + updatedBy +
+                ", editableBy=" + editableBy +
+                '}';
+    }
 }

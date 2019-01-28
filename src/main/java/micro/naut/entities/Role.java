@@ -4,6 +4,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+/**
+ * Created by Karanbir Singh on 1/27/2019.
+ **/
 @Entity(name = "role")
 @Table(name="role")
 public class Role extends AbstractEntity<Long> {
@@ -64,4 +67,15 @@ public class Role extends AbstractEntity<Long> {
     public void setExpired(boolean expired) {
         this.expired = expired;
     }
+
+	@Override
+	public String toString() {
+		return "Role{" +
+				"name='" + name + '\'' +
+				", enabled=" + enabled +
+				", editable=" + editable +
+				", deleted=" + deleted +
+				", expired=" + expired +
+				'}';
+	}
 }

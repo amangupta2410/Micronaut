@@ -15,6 +15,8 @@ public class Routes {
 
     private static final String PASSWORD_ENCODE = "password-encode";
 
+    private static final String USER = "user";
+
     private static final String VERSION = "v1";
 
     private static final String SLASH = "/";
@@ -35,6 +37,8 @@ public class Routes {
     public static final String TEST_OBJ_URI = TEST_OBJ+SLASH;
 
     public static final String PASSWORD_ENCODE_URI = PASSWORD_ENCODE+SLASH;
+
+    public static final String USER_URI = USER+SLASH;
 
     private static final String PATH_VARIABLE_PASSWORD = "{password}";
 
