@@ -1,24 +1,25 @@
 package micro.naut.dtos;
 
-import com.fasterxml.jackson.annotation.*;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.HttpStatus;
-import org.json.JSONObject;
 
 import javax.validation.Valid;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 import static micro.naut.util.Constants.Messages.PASSWORD_ENCODE;
-import static micro.naut.util.JSONUtils.*;
+import static micro.naut.util.JSONUtils.OBJECT_MAPPER;
+import static micro.naut.util.JSONUtils.SDF;
 
 /**
  * Created by Karanbir Singh on 1/27/2019.

@@ -3,6 +3,7 @@ Thumbs.db
 .gradle
 build/
 target/
+gradle
 out/
 .idea
 *.iml
@@ -15,3 +16,4 @@ out/
 /.idea
 /mvnw.cmd
 /mvnw
+/gradle
