@@ -1,8 +1,12 @@
 package micro.naut.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import static micro.naut.util.Constants.Messages.PASSWORD_ENCODE;
+import static micro.naut.util.JSONUtils.BCRYPT_PASSWORD_ENCODER;
 
 /**
  * Created by Karanbir Singh on 1/27/2019.
@@ -16,13 +20,15 @@ public class UserDto extends AbstractDto<Long>{
      * Ignoring it so that it is not returned in response but only available to be part of request wherever applicable
      * Allowed only while writing
      */
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonIgnore
     private String password;
 
     private String roleName;
 
     private String roleId;
 
+    @JsonIgnore
     private String encodedPassword;
 
     private boolean checkPasswordHistory;
@@ -43,12 +49,18 @@ public class UserDto extends AbstractDto<Long>{
         this.roleName = roleName;
     }
 
+    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     public String getPassword() {
-        return this.password;
+        return PASSWORD_ENCODE;
     }
 
+    @JsonProperty
     public void setPassword(String password) {
         this.password = password;
+        if(password!=null) {
+            this.encodedPassword = BCRYPT_PASSWORD_ENCODER.encode(password);
+        }
     }
 
     public String getRoleId() {
@@ -59,12 +71,8 @@ public class UserDto extends AbstractDto<Long>{
         this.roleId = roleId;
     }
 
-    public void setEncodedPassword(String encodedPassword) {
-        this.encodedPassword = encodedPassword;
-    }
-
     public boolean passwordMatches(){
-        return new BCryptPasswordEncoder().matches(this.password, this.encodedPassword);
+        return BCRYPT_PASSWORD_ENCODER.matches(this.password, this.encodedPassword);
     }
 
     public String getEncodedPassword() {

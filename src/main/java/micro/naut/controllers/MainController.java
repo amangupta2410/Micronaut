@@ -45,6 +45,11 @@ public class MainController {
         return demoService.testObject();
     }
 
+    @Post(value = TEST_OBJ_URI)
+    public Test testObjPost(@Body Test test){
+        return demoService.testObject();
+    }
+
     @Post(value = PASSWORD_ENCODE_URI, consumes = MediaType.TEXT_PLAIN)
     public String encodePost(@Body String password){
         return encoderService.encode(password);

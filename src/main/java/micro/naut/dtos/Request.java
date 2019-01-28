@@ -2,7 +2,9 @@ package micro.naut.dtos;
 
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.HttpStatus;
 import org.json.JSONObject;
@@ -15,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import static micro.naut.util.Constants.Messages.PASSWORD_ENCODE;
 import static micro.naut.util.JSONUtils.*;
 
 /**
@@ -33,7 +36,8 @@ public class Request<T> {
     //@NotNull(message = "The request body object should be present")
     @Valid
     @JsonProperty("data")
-    private T data;
+    @JsonIgnoreProperties({"password"})
+    private JsonNode data;
 
     // the http method of the request
     private String method;
@@ -80,7 +84,12 @@ public class Request<T> {
     }
 
     // this will give linked hash map, and is very painful
-    public T getData() {
+    public JsonNode getData() {
+        if(this.data.has("password")){
+            ObjectNode node = (ObjectNode) data;
+            node.put("password", PASSWORD_ENCODE);
+            this.data = node;
+        }
         return this.data;
     }
 
@@ -89,13 +98,15 @@ public class Request<T> {
     }
 
     private T getData(Class c, ObjectMapper objectMapper) throws IOException {
-        //objectMapper.readValue(new JSONObject((Map)data).toString(), c);
-        return (T)objectMapper.readValue(new JSONObject((Map)data).toString(), c);
+        // objectMapper.readValue(new JSONObject((Map)data).toString(), c);
+        // (new JSONObject((Map)data).toString()
+        return (T)objectMapper.treeToValue(this.data, c);
     }
 
-    public void setData(T data) throws IOException {
-        String jsonString = new JSONObject((Map)data).toString();
-        this.data = (T)OBJECT_MAPPER.readValue(jsonString, data.getClass());
+    public void setData(JsonNode data) throws IOException {
+        /*String jsonString = new JSONObject((Map)data).toString();
+        this.data = (T)OBJECT_MAPPER.readValue(jsonString, data.getClass());*/
+        this.data = data;
     }
 
     public String getMethod() {

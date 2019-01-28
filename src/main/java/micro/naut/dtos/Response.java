@@ -1,6 +1,7 @@
 package micro.naut.dtos;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import static micro.naut.util.JSONUtils.OBJECT_MAPPER;
 import static micro.naut.util.JSONUtils.SDF;
 
 /**
@@ -42,6 +44,7 @@ public class Response {
     @JsonIgnore
     private HttpResponse httpResponse;
 
+    @JsonIgnoreProperties({"password"})
     private Request request;
 
     private HttpStatus status = HttpStatus.OK;
@@ -95,7 +98,7 @@ public class Response {
     }
 
     public void setData(Object object) {
-        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectMapper objectMapper = OBJECT_MAPPER;
         JsonNode data = objectMapper.convertValue(object, JsonNode.class);
         this.data = data;
     }

@@ -29,9 +29,6 @@ public class UserService {
     @Inject
     private RoleRepository roleRepository;
 
-    @Inject
-    BcryptPasswordEncoderService encoderService;
-
     public UserDto saveUser(UserDto userDto){
         if (userDto==null){
             logger.error("New User Details were null");
@@ -39,7 +36,7 @@ public class UserService {
         }
         User user = new User();
         user.setUsername(userDto.getUsername());
-        user.setPassword(encoderService.encode(userDto.getPassword()));
+        user.setPassword(userDto.getEncodedPassword());
 
         long newUsersRoleId = userDto.getId() == null ? RoleConstants.USER : userDto.getId();
 
@@ -60,6 +57,7 @@ public class UserService {
         try {
             userRepository.save(user);
             userDto.setCreatedSuccessfully(true);
+            userDto.setPassword(null);
         }catch (ConstraintViolationException e){
             logger.error("Username -> "+userDto.getUsername()+" -> Already Exists");
             userDto.setCreatedSuccessfully(false);
