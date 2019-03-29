@@ -19,9 +19,6 @@ public class AbstractEntity<T extends Serializable> implements Serializable {
     @Column(name="created_on",columnDefinition="TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP")
     private Timestamp createdOn;
 
-    @Column(name="updated_on",columnDefinition="TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
-    private Timestamp updatedOn;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="updated_by", referencedColumnName = "id", columnDefinition = "BIGINT(20)")
     private User updatedBy;
@@ -46,14 +43,6 @@ public class AbstractEntity<T extends Serializable> implements Serializable {
         this.createdOn = createdOn;
     }
 
-    public Timestamp getUpdatedOn() {
-        return updatedOn;
-    }
-
-    public void setUpdatedOn(Timestamp updatedOn) {
-        this.updatedOn = updatedOn;
-    }
-
     public User getUpdatedBy() {
         return updatedBy;
     }
@@ -75,7 +64,6 @@ public class AbstractEntity<T extends Serializable> implements Serializable {
         return "AbstractEntity{" +
                 "id=" + id +
                 ", createdOn=" + createdOn +
-                ", updatedOn=" + updatedOn +
                 ", updatedBy=" + updatedBy +
                 ", editableBy=" + editableBy +
                 '}';

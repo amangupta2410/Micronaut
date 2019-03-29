@@ -23,7 +23,7 @@ public class User extends AbstractEntity<Long> {
 	private String password;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="role")
+	@JoinColumn(name="role_id")
 	private Role role;
 
 	@Column(nullable = false, columnDefinition = "TINYINT", length = 1)

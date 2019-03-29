@@ -7,8 +7,8 @@ import javax.persistence.Table;
 /**
  * Created by Karanbir Singh on 1/27/2019.
  **/
-@Entity(name = "role")
-@Table(name="role")
+@Entity(name = "roles")
+@Table(name="roles")
 public class Role extends AbstractEntity<Long> {
 
 	private static final long serialVersionUID = -6702147773381635593L;

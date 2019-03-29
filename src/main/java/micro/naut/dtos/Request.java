@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.HttpStatus;
@@ -38,7 +39,7 @@ public class Request<T> {
     @Valid
     @JsonProperty("data")
     @JsonIgnoreProperties({"password"})
-    private JsonNode data;
+    private JsonNode data = JsonNodeFactory.instance.objectNode();
 
     // the http method of the request
     private String method;

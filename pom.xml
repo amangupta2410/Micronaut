@@ -6,7 +6,7 @@
     <artifactId>micro-naut</artifactId>
     <version>0.1</version>
     <properties>
-        <micronaut.version>1.0.3</micronaut.version>
+        <micronaut.version>1.0.5</micronaut.version>
         <jdk.version>1.8</jdk.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <exec.mainClass>micro.naut.Application</exec.mainClass>
