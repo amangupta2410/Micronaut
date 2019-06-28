@@ -28,4 +28,5 @@ jpa:
                 hbm2ddl:
                     auto: create
                 show_sql: true
-                dialect: org.hibernate.dialect.MySQL57Dialect
+                # MICRO_POC_JDBC_DIALECT -> MYSQL -> org.hibernate.dialect.MySQL57Dialect
+                dialect: ${MICRO_POC_JDBC_DIALECT:`org.hibernate.dialect.H2Dialect`}
